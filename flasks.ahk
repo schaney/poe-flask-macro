@@ -2,25 +2,20 @@
 
 flasks := true
 
-f8::
-flasks := !flasks
-
 Gui 69:-caption -Border +alwaysontop
-c:= (flasks ? "690000" : "006600")
+c:= "006900"
 Gui 69:color, %c%
 h:= (A_ScreenHeight * 0.005)
 w:= (A_ScreenWidth * 0.25)
 x:= (A_ScreenWidth // 2) - (w // 2)
 y:= (A_ScreenHeight) - h
-Gui 69:show, w%w% h%h% x%x% y%y%
+Gui 69:show, w%w% h%h% x%x% y%y%, No Activation
 
-settimer, killbox, 2000
+f8::
+flasks := !flasks
+c:= (flasks ? "006900" : "690000")
+Gui 69:color, %c%
 return
-
-killbox:
-  settimer, killbox, off
-  Gui 69: destroy
-  return
 
 #if  WinActive("ahk_class POEWindowClass") && flasks
 Space::
